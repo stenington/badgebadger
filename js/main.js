@@ -2,8 +2,10 @@
 $(function(){
 
   function buildAssertion() {
+    var email = $('#email')[0].value;
+    var recipient = Config.hashEmail ? 'sha256$' + sha256_digest(email) : email;
     var assertion = {         
-      "recipient": $('#email')[0].value,
+      "recipient": recipient,
       "badge": {         
         "version": $('#version')[0].value,
         "name": $('#name')[0].value,
@@ -48,6 +50,11 @@ $(function(){
         Config.hereFromBackpackUrl = $('#baseUrl')[0].value;
       });
       $('#baseUrl').change();
+      
+      Config.hashEmail = $('#hash').is(':checked');
+      $('#hash').click(function(){
+        Config.hashEmail = $(this).is(':checked');
+      });
     },
   };
   Config.init();
@@ -58,6 +65,7 @@ $(function(){
 
   $('#metadata form').change(assertionPreview.update);
   $('form #email').change(assertionPreview.update);
+  $('#hash').click(assertionPreview.update);
 
   var digs = Digs();
 

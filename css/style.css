@@ -23,6 +23,10 @@ h2 .step {
 label {
   color: #666;
 }
+label[for=hash] {
+  display: inline-block;
+  margin-left: 4px;
+}
 
 pre {
   background: #eee;
