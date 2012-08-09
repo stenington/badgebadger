@@ -73,14 +73,14 @@ $(function(){
   asyncTest('Reload script', function(){
     ok(FindRoot, 'FindRoot script loaded');    
     equal(FindRoot.version, 'versionA', 'versionA loaded');
-    ok(FindRoot.root.match(/badgebadger\/test\/versionA/), 'FindRoot saw versionA root');
+    ok(FindRoot.root.match(/\/test\/versionA/), 'FindRoot saw versionA root');
 
     var reload = $('script[src*="findroot.js"]').reloadFrom(FindRoot.root.replace('versionA', 'versionB'));
     reload.success(function(){
       start();
       ok(FindRoot, 'FindRoot script still there');    
       equal(FindRoot.version, 'versionB', 'versionB loaded');
-      ok(FindRoot.root.match(/badgebadger\/test\/versionB/), 'FindRoot saw versionB root');
+      ok(FindRoot.root.match(/\/test\/versionB/), 'FindRoot saw versionB root');
     }).fail(function(){
       start();
       ok(false, 'reload failed');
