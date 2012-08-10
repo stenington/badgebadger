@@ -32,3 +32,7 @@ pre {
   background: #eee;
 }
 
+#badge img {
+  max-width: 175px;
+  max-height: 175px;
+}
